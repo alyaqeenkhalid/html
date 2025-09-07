@@ -116,13 +116,16 @@ body {
   color: #7A5F3F; /* Brown Hover */
 }
 
+/* CONTACT SECTION FIXED - NOW IN ONE LINE */
 .contact-info {
   display: flex;
-  bottom: 1.2rem; /* Increased from 1rem to match login page */
-  left: 10.2vw;
-  gap: 2rem; /* Increased from 1.7rem to match login page */
-  flex-wrap: wrap;
+  justify-content: space-between; /* Changed to distribute items evenly */
+  align-items: center;
   position: absolute;
+  bottom: 1.2rem;
+  left: 10.2vw;
+  right: 10.2vw; /* Added right positioning for balance */
+  gap: 1rem; /* Reduced gap to fit all in one line */
   z-index: 3;
 }
 
@@ -130,6 +133,7 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
+  flex: 1; /* Allow items to grow equally */
   max-width: 12rem;
 }
 
@@ -290,7 +294,7 @@ body {
 <a href="../Login/index.html">Login</a>
 </span>
 </div>
-<!-- Contact Info -->
+<!-- Contact Info - Now in one line -->
 <div class="contact-info">
 <div class="contact-item">
 <img src="images/phone-icon.svg" alt="Phone" />
