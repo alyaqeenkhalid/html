@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign-up to AqariQ</title>
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: #F5F3F0; /* Off-White - Changed from #fff */
+}
+
+.signup-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
+  margin: 0 auto;
+}
+
+.back-arrow {
+  position: absolute;
+  top: 1.3rem;
+  left: 1rem;
+  z-index: 10;
+}
+
+.back-arrow img {
+  width: 1rem;
+  height: auto;
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.form-section {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0vh 10vw 5vh 10.5vw;
+  z-index: 3;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 30vw;
+  width: 100%;
+}
+
+.signup-title {
+  text-align: left;
+  margin-left: -2rem;
+  margin-bottom: 0.25rem;
+}
+
+.title-text {
+  font-weight: 800; /* Changed from bolder to match login page */
+  font-size: 1.1rem; /* Increased from 1.1rem to match login page */
+  color: #3A3A3A; /* Dark Gray - Changed from #373F50 */
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.user-type-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.user-type-button {
+  background: #8B6F47; /* Primary Brown - Changed from #304155 */
+  border: none;
+  color: #FFFFFF; /* White - Changed from #EBEBEB */
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.7rem; /* Increased from 0.7rem to match login page */
+  height: 2.3rem; /* Increased from 2.3rem to match login page */
+  border-radius: 7px; /* Increased from 7px to match login page */
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s; /* Enhanced transition */
+  box-shadow: 0 4px 6px rgba(139,111,71,0.1); /* Transp Brown 10% - Added to match login page */
+}
+
+.user-type-button:hover {
+  background: #7A5F3F; /* Brown Hover - Changed from #2a384a */
+  transform: translateY(-2px); /* Added hover effect to match login page */
+}
+
+.login-link {
+  text-align: center;
+  font-size: 0.75rem; /* Increased from 0.65rem to match login page */
+  color: #8B8680; /* Muted Gray-Brown - Changed from #383C3E */
+}
+
+.login-link a {
+  color: #8B6F47; /* Primary Brown - Added link color */
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.login-link a:hover {
+  color: #7A5F3F; /* Brown Hover */
+}
+
+.contact-info {
+  display: flex;
+  bottom: 1.2rem; /* Increased from 1rem to match login page */
+  left: 10.2vw;
+  gap: 2rem; /* Increased from 1.7rem to match login page */
+  flex-wrap: wrap;
+  position: absolute;
+  z-index: 3;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  max-width: 12rem;
+}
+
+.contact-item img {
+  width: 1.0rem;
+  height: 1.0rem;
+}
+
+.contact-item a:hover {
+  text-decoration: none;
+  color: #8B6F47; /* Primary Brown - Changed from #1a2df8 */
+}
+
+.contact-text span {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+  font-size: 0.55rem; /* Increased from 0.5rem to match login page */
+  color: #8B8680; /* Accent Beige - Changed from #383C3E */
+}
+
+.contact-text a {
+  display: block;
+  font-size: 0.55rem; /* Increased from 0.5rem to match login page */
+  color: #3A3A3A; /* Dark Gray - Changed from #000 */
+  text-decoration: underline;
+}
+
+.contact-text a:hover {
+  color: #8B6F47; /* Primary Brown - Added hover effect */
+}
+
+.image-sidebar {
+  width: 28vw;
+  height: 100%;
+  top: 0;
+  right: 0;
+  flex: none;
+  background: #3a3a3a; /* Dark Gray - Changed from #304155 */
+  z-index: 1;
+  position: absolute;
+  overflow: hidden;
+}
+
+.image-overlay-wrapper {
+  position: absolute;
+  left: 40%;
+  top: 0;
+  height: 100%;
+  width: 70vw;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.image-overlay {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.background-image {
+  top: 3vh;
+  height: 89%;
+  width: 45%; /* Maintain aspect ratio */
+  max-width: none;
+  object-fit: cover;
+  border-radius: 16px; /* Reduced from 20px to match login page */
+  position: relative; /* No need for absolute anymore */
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Hide image/sidebar and show only form + contact info */
+@media (max-width: 992px) {
+  .image-sidebar,
+  .image-overlay-wrapper {
+    display: none;
+  }
+
+  .main-content {
+    margin-top: -3rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-section {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 6vh 8vw;
+    justify-content: center;
+  }
+
+  .form-content {
+    max-width: 80%;
+  }
+
+  .contact-info {
+    margin-top: 2rem;
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 576px) {
+  .title-text {
+    font-size: 1.6rem;
+  }
+
+  .reset-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .reset-form input,
+  .reset-form button {
+    font-size: 0.8rem;
+  }
+
+  .contact-info {
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+</style>
+</head>
+<body>
+<div class="signup-container">
+<!-- Back Arrow -->
+<div class="back-arrow">
+<img src="images/vector.svg" alt="Back" class="back-arrow" onclick="history.back()">
+</div>
+<div class="main-content">
+<!-- Left: Form Section -->
+<div class="form-section">
+<div class="form-content">
+<!-- Sign-up Title -->
+<div class="signup-title">
+<span class="title-text"><h1>Sign-up to AqariQ</h1></span>
+</div>
+<!-- User Type Buttons -->
+<div class="user-type-buttons">
+<button id="owner-btn" class="user-type-button">Property Owner</button>
+<button id="client-btn" class="user-type-button">Client</button>
+<button id="builder-btn" class="user-type-button">Builder</button>
+</div>
+<!-- Login Link -->
+<div class="login-link">
+<span>Already have an account?
+<a href="../Login/index.html">Login</a>
+</span>
+</div>
+<!-- Contact Info -->
+<div class="contact-info">
+<div class="contact-item">
+<img src="images/phone-icon.svg" alt="Phone" />
+<div class="contact-text">
+<span>
+ Phone<br /> </span>
+<a href="tel:+96877272442">+968 77272442</a>
+</div>
+</div>
+<div class="contact-item">
+<img src="images/email-icon.svg" alt="Email" />
+<div class="contact-text">
+<span>
+ E-MAIL<br /></span>
+<a href="mailto:AqariQ25@gmail.com">AqariQ25@gmail.com</a>
+</div>
+</div>
+<div class="contact-item">
+<img src="images/email-icon.svg" alt="Helpdesk" />
+<div class="contact-text">
+<span>
+ HELPDESK<br /></span>
+<a href="https://helpdesk.com" target="_blank" rel="noopener noreferrer">https://helpdesk.com</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="image-overlay-wrapper">
+<div class="image-overlay">
+<img src="images/Picture 3.png" alt="Building" class="background-image" />
+</div>
+</div>
+<!-- Right: Image Section on Navy Blue Background -->
+<div class="image-sidebar">
+</div>
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+console.log("DOM ready");
+const ownerBtn = document.getElementById('owner-btn');
+const clientBtn = document.getElementById('client-btn');
+const builderBtn = document.getElementById('builder-btn');
+if (ownerBtn) {
+ownerBtn.addEventListener('click', function () {
+console.log("Redirecting to Property Owner");
+window.location.href = "../Signup2/index.html";
+ });
+ }
+if (clientBtn) {
+clientBtn.addEventListener('click', function () {
+window.location.href = "../Signup_Client/index.html";
+ });
+ }
+if (builderBtn) {
+builderBtn.addEventListener('click', function () {
+window.location.href = "../Signup_Builder/index.html";
+ });
+ }
+ });
+</script>
+</body>
+</html>
